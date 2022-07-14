@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Fumetto;
 
 class FumettoController extends Controller
 {
@@ -13,7 +14,9 @@ class FumettoController extends Controller
      */
     public function index()
     {
-        return "inderx";
+        $fumetti = Fumetto::all();
+
+        return view('fumetti.index', compact('fumetti'));
     }
 
     /**
@@ -23,8 +26,7 @@ class FumettoController extends Controller
      */
     public function create()
     {
-        return "create";
-        
+        return view('fumetti.create');
     }
 
     /**
@@ -35,7 +37,20 @@ class FumettoController extends Controller
      */
     public function store(Request $request)
     {
-        return "store";
+        $data = $request->all();
+        $fumetto = new Fumetto();
+
+        $fumetto->title=$data['title'];
+        $fumetto->description=$data['description'];
+        $fumetto->thumb=$data['thumb'];
+        $fumetto->price=$data['price'];
+        $fumetto->sale_date=$data['sale_date'];
+        $fumetto->type=$data['type'];
+        $fumetto->series=$data['series'];
+
+        $fumetto->save();
+
+        return redirect()->route('fumetti.show', $fumetto->id);
     }
 
     /**
@@ -44,9 +59,9 @@ class FumettoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Fumetto $fumetto)
     {
-        return "show";
+        return view('fumetti.show', compact('fumetto'));
     }
 
     /**
