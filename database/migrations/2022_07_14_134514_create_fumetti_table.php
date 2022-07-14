@@ -16,10 +16,10 @@ class CreateFumettiTable extends Migration
         Schema::create('fumetti', function (Blueprint $table) {
             $table->id();
             $table->string('title', 50);
-            $table->string('description', 500);
+            $table->string('description', 2000);
             $table->string('thumb', 500);
             $table->decimal('price');
-            $table->string('series', 40);
+            $table->string('series', 100);
             $table->date('sale_date');
             $table->string('type', 20);
             $table->timestamps();

@@ -37,6 +37,7 @@ class FumettoController extends Controller
      */
     public function store(Request $request)
     {
+
         $data = $request->all();
         $fumetto = new Fumetto();
 
