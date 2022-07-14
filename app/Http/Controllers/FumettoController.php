@@ -59,8 +59,9 @@ class FumettoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Fumetto $fumetto)
+    public function show($id)
     {
+        $fumetto = Fumetto::find($id);
         return view('fumetti.show', compact('fumetto'));
     }
 

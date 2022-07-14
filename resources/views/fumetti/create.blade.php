@@ -17,7 +17,6 @@
         <input type="date" name="sale_date">
         <input type="text" placeholder="tipo" name="type">
         
-
-        <button type="submit" class="btn btn-primary">Crea</button>
+        <button type="submit">Crea</button>
     </form>
 @endsection
