@@ -41,13 +41,13 @@ class FumettoController extends Controller
         $data = $request->all();
         $fumetto = new Fumetto();
 
-        $fumetto->title=$data['title'];
-        $fumetto->description=$data['description'];
-        $fumetto->thumb=$data['thumb'];
-        $fumetto->price=$data['price'];
-        $fumetto->sale_date=$data['sale_date'];
-        $fumetto->type=$data['type'];
-        $fumetto->series=$data['series'];
+        $fumetto->title = $data['title'];
+        $fumetto->description = $data['description'];
+        $fumetto->thumb = $data['thumb'];
+        $fumetto->price = $data['price'];
+        $fumetto->sale_date = $data['sale_date'];
+        $fumetto->type = $data['type'];
+        $fumetto->series = $data['series'];
 
         $fumetto->save();
 
@@ -74,7 +74,8 @@ class FumettoController extends Controller
      */
     public function edit($id)
     {
-        return "edit";
+        $fumetto = Fumetto::find($id);
+        return view('fumetti.edit', compact('fumetto'));
     }
 
     /**
@@ -86,7 +87,11 @@ class FumettoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return "update";
+        $data = $request->all();
+        $fumetto = Fumetto::find($id);
+        $fumetto->update($data);
+
+        return redirect()->route('fumetti.show', $fumetto->id);
     }
 
     /**
@@ -97,6 +102,10 @@ class FumettoController extends Controller
      */
     public function destroy($id)
     {
-        return "destroy";
+        $fumetto = Fumetto::find($id);
+
+        $fumetto->delete();
+
+        return redirect()->route('fumetti.index');
     }
 }
