@@ -17,7 +17,7 @@
         <input type="number" placeholder="prezzo" name="price" value="{{ $fumetto->price }}">
         <input type="text" placeholder="serie" name="series" value="{{ $fumetto->series }}">
         <input type="date" name="sale_date" value="{{ $fumetto->sale_date }}">
-        
+        <input type="text" placeholder="tipo" name="type" value="{{ $fumetto->type }}">
 
         <button type="submit">Modifica</button>
     </form>

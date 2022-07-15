@@ -6,24 +6,38 @@
 
 @section('page-content')
     <h1>Tutti i fumetti:</h1>
-    <ul>
-        @foreach ($fumetti as $fumetto)
-            <li>
-                <h3>Titolo: {{ $fumetto->title }}</h3>
-                <h3>Descrizione: {{ $fumetto->description }}</h3>
-                <h3>Prezzo: {{ $fumetto->price }}</h3>
-                <h3>Serie: {{ $fumetto->series }}</h3>
-                <h3>Data vendita: {{ $fumetto->sale_date }}</h3>
-                <h3>tipo: {{ $fumetto->type }}</h3>
-                <a href="{{ route('fumetti.edit', $fumetto->id) }}">Modifica</a>
-                <form action="{{ route('fumetti.destroy', $fumetto->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-        
-                    <button type="submit">Cancella</button>
-        
-                </form>
-            </li>
-        @endforeach
-    </ul>
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Titolo</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($fumetti as $fumetto)
+                <tr>
+                    <th scope="row">{{ $fumetto->id }}</th>
+                    <td>{{ $fumetto->title }}</td>
+                    <td>
+                        <a href="{{ route('fumetti.show', $fumetto->id) }}">
+                            <button type="button" class="btn btn-primary">Visualizza</button>
+                        </a>
+                        <a href="{{ route('fumetti.edit', $fumetto->id) }}">
+                            <button type="button" class="btn btn-success">Modifica</button>
+                        </a>
+                        <form style="display: inline-block" action="{{ route('fumetti.destroy', $fumetto->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                           
+                                <button type="submit" class="btn btn-danger">Elimina</button>
+                            
+
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 @endsection
