@@ -15,7 +15,9 @@
             </tr>
         </thead>
         <tbody>
+
             @foreach ($fumetti as $fumetto)
+            
                 <tr>
                     <th scope="row">{{ $fumetto->id }}</th>
                     <td>{{ $fumetto->title }}</td>
