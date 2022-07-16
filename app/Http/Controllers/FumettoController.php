@@ -38,16 +38,26 @@ class FumettoController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'title' => 'required|max:80',
+            'type' => 'required|max:50',
+            'thumb' => 'nullable|max:255',
+            'price' => 'required|numeric|max:999.99',
+            'description' => 'required|max:2000',
+            'series' => 'required|max:255'
+        ]);
         $data = $request->all();
         $fumetto = new Fumetto();
+        
 
-        $fumetto->title = $data['title'];
-        $fumetto->description = $data['description'];
-        $fumetto->thumb = $data['thumb'];
-        $fumetto->price = $data['price'];
-        $fumetto->sale_date = $data['sale_date'];
-        $fumetto->type = $data['type'];
-        $fumetto->series = $data['series'];
+        $fumetto->fill($data);
+        // $fumetto->title = $data['title'];
+        // $fumetto->description = $data['description'];
+        // $fumetto->thumb = $data['thumb'];
+        // $fumetto->price = $data['price'];
+        // $fumetto->sale_date = $data['sale_date'];
+        // $fumetto->type = $data['type'];
+        // $fumetto->series = $data['series'];
 
         $fumetto->save();
 
